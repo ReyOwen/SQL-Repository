@@ -1,7 +1,4 @@
--- ============================================
--- VERIFICATION
--- Uncomment each block to test individually
--- ============================================
+
 use BankDB;
 -- 1. Teller_Kevin
  EXECUTE AS USER = 'Teller_Kevin';
