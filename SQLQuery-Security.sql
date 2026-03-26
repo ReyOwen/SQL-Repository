@@ -18,7 +18,6 @@ GO
 
 -- ============================================
 -- 1. TELLERS (Teller_Kevin)
---    Key fix: ON OBJECT::[Schema].[Table]
 -- ============================================
 
 GRANT SELECT ON OBJECT::[Accounts].[Customers] TO Tellers;
