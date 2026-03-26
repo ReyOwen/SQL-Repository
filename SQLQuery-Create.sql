@@ -1,15 +1,3 @@
--- ============================================
--- BankDB - FIXED SCRIPT
--- Fixes applied:
---   1. Removed stray 'users' keyword
---   2. Added CREATE USER BranchManager_Michael
---   3. Fixed role name BranchManagers -> BranchManager
---   4. Removed duplicate ALTER TABLE ADD PRIMARY KEY
---   5. Renamed PaymentID -> LoanID in Loans.Payments
---   6. Added GO between Compliance and HR schemas
---   7. Added FOREIGN KEY constraints
---   8. Fixed TrandDate typo -> TransactionDate
--- ============================================
 
 CREATE DATABASE BankDB;
 GO
@@ -99,11 +87,7 @@ CREATE TABLE HR.Employees (
 );
 GO
 
--- ============================================
--- USERS
--- FIX 1: Removed stray 'users' keyword
--- FIX 2: Added missing BranchManager_Michael user
--- ============================================
+
 
 CREATE USER Teller_Kevin         WITHOUT LOGIN;
 CREATE USER LoanOfficer_Pam      WITHOUT LOGIN;
@@ -123,10 +107,7 @@ CREATE ROLE BranchManager;
 CREATE ROLE HRStaff;
 GO
 
--- ============================================
--- ASSIGN USERS TO ROLES
--- FIX 3: Changed 'BranchManagers' -> 'BranchManager'
--- ============================================
+
 
 EXEC sp_addrolemember 'Tellers',            'Teller_Kevin';
 EXEC sp_addrolemember 'LoanOfficers',       'LoanOfficer_Pam';
@@ -139,10 +120,7 @@ EXEC sp_addrolemember 'LoanOfficers', 'BranchManager_Michael';
 EXEC sp_addrolemember 'Tellers',      'BranchManager_Michael';
 GO
 
--- ============================================
--- DATA: Accounts.Customers
--- FIX 4: Removed duplicate ALTER TABLE ADD PRIMARY KEY
--- ============================================
+
 
 INSERT INTO Accounts.Customers (CustomerID, Name, SSN, Address)
 VALUES
@@ -258,10 +236,7 @@ VALUES
 
 SELECT * FROM Accounts.Accounts;
 
--- ============================================
--- DATA: Accounts.Transactions
--- FIX 8: Column renamed to TransactionDate
--- ============================================
+
 
 INSERT INTO Accounts.Transactions (TransactionID, AccountID, Amount, TransactionDate)
 VALUES
@@ -377,10 +352,7 @@ VALUES
 
 SELECT * FROM Loans.Loans;
 
--- ============================================
--- DATA: Loans.Payments
--- FIX 5: Column PaymentID renamed to LoanID
--- ============================================
+
 
 INSERT INTO Loans.Payments (LoanPayment, LoanID, Amount, DueDate, Paid)
 VALUES
